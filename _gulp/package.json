@@ -1,0 +1,28 @@
+{
+  "name": "testTemplate",
+  "version": "1.0.0",
+  "description": "template",
+  "author": "HayatoAKAGIRI",
+  "url": "",
+  "license": "",
+  "keywords": "",
+  "devDependencies": {
+    "babel-cli": "^6.10.1",
+    "babel-preset-es2015": "^6.9.0",
+    "browser-sync": "^2.11.1",
+    "gulp": "^3.9.1",
+    "gulp-autoprefixer": "^3.1.0",
+    "gulp-babel": "^6.1.2",
+    "gulp-cache": "^0.4.2",
+    "gulp-csscomb": "^3.0.6",
+    "gulp-csslint": "^0.2.2",
+    "gulp-imagemin": "^2.4.0",
+    "gulp-notify": "^2.2.0",
+    "gulp-plumber": "^1.1.0",
+    "gulp-rename": "^1.2.2",
+    "gulp-ruby-sass": "^2.0.6",
+    "gulp-slim": "^0.3.0",
+    "gulp-zip": "^3.2.0",
+    "run-sequence": "^1.1.5"
+  }
+}
