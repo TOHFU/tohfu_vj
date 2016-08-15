@@ -102,5 +102,3 @@ class THREEMain {
 }
 
 let threeMain = new THREEMain();
-
-threeMain.add(new SimpleCube());
