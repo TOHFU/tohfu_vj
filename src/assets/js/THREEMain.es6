@@ -9,6 +9,9 @@ class THREEMain {
 
   }
 
+  /**
+   * シーンの初期化
+   */
   createScene() {
 
     // ----描画対象のDOM要素を取得
@@ -44,6 +47,9 @@ class THREEMain {
 
   }
 
+  /**
+   * カメラの初期化
+   */
   createCamera() {
 
     // ----カメラのオプション
@@ -57,6 +63,9 @@ class THREEMain {
 
   }
 
+  /**
+   * ライティングの初期化
+   */
   createLight() {
 
     // ----環境光を定義
@@ -64,6 +73,9 @@ class THREEMain {
 
   }
 
+  /**
+   * ウインドウリサイズの処理
+   */
   resize() {
 
     this.vW = this.container.clientWidth;
@@ -76,6 +88,9 @@ class THREEMain {
 
   }
 
+  /**
+   * レンダリング
+   */
   render() {
 
     requestAnimationFrame(() => {
@@ -90,6 +105,10 @@ class THREEMain {
 
   }
   
+  /**
+   * オブジェクトの追加
+   * @param mesh メッシュオブジェクト
+   */
   add(mesh) {
 
     console.log('==== mesh added ====');
