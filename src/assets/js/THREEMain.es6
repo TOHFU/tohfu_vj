@@ -4,9 +4,11 @@ class THREEMain {
     // ----描画するオブジェクトを格納する配列
     this.objects = [];
 
+    // ----fpsモニターの表示
+    this.setupFPSmonitor();
+
     // ----シーンの初期化
     this.createScene();
-
   }
 
   /**
@@ -93,17 +95,34 @@ class THREEMain {
    */
   render() {
 
-    requestAnimationFrame(() => {
-      this.render();
-    });
+    if (this.stats) { this.stats.begin(); };
     
+    // ----オブジェクトの更新
     this.objects.forEach((object) => {
       object.update();
     });
 
+    // ----レンダリング
     this.renderer.render(this.scene, this.camera);
 
+    if (this.stats) { this.stats.end(); };
+
+    requestAnimationFrame(() => {
+      this.render();
+    });
+
   }
+
+  /**
+   * FPSモニターの初期化(stat.js)
+   */
+   setupFPSmonitor() {
+   
+    this.stats = new Stats();
+    this.stats.showPanel(0);
+    document.body.appendChild(this.stats.dom);
+
+   }
   
   /**
    * オブジェクトの追加
@@ -121,3 +140,4 @@ class THREEMain {
 }
 
 let threeMain = new THREEMain();
+
