@@ -4,11 +4,16 @@ class THREEMain {
     // ----描画するオブジェクトを格納する配列
     this.objects = [];
 
+    // ----fpsモニターの表示
+    this.setupFPSmonitor();
+
     // ----シーンの初期化
     this.createScene();
-
   }
 
+  /**
+   * シーンの初期化
+   */
   createScene() {
 
     // ----描画対象のDOM要素を取得
@@ -44,6 +49,9 @@ class THREEMain {
 
   }
 
+  /**
+   * カメラの初期化
+   */
   createCamera() {
 
     // ----カメラのオプション
@@ -57,6 +65,9 @@ class THREEMain {
 
   }
 
+  /**
+   * ライティングの初期化
+   */
   createLight() {
 
     // ----環境光を定義
@@ -64,6 +75,9 @@ class THREEMain {
 
   }
 
+  /**
+   * ウインドウリサイズの処理
+   */
   resize() {
 
     this.vW = this.container.clientWidth;
@@ -76,20 +90,44 @@ class THREEMain {
 
   }
 
+  /**
+   * レンダリング
+   */
   render() {
 
-    requestAnimationFrame(() => {
-      this.render();
-    });
+    if (this.stats) { this.stats.begin(); };
     
+    // ----オブジェクトの更新
     this.objects.forEach((object) => {
       object.update();
     });
 
+    // ----レンダリング
     this.renderer.render(this.scene, this.camera);
 
+    if (this.stats) { this.stats.end(); };
+
+    requestAnimationFrame(() => {
+      this.render();
+    });
+
   }
+
+  /**
+   * FPSモニターの初期化(stat.js)
+   */
+   setupFPSmonitor() {
+   
+    this.stats = new Stats();
+    this.stats.showPanel(0);
+    document.body.appendChild(this.stats.dom);
+
+   }
   
+  /**
+   * オブジェクトの追加
+   * @param mesh メッシュオブジェクト
+   */
   add(mesh) {
 
     console.log('==== mesh added ====');
@@ -103,4 +141,3 @@ class THREEMain {
 
 let threeMain = new THREEMain();
 
-threeMain.add(new SimpleCube());

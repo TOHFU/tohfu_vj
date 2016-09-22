@@ -1,7 +1,8 @@
-class SimpleCube {
+class SimpleCube extends BaseObject {
   constructor() {
+    super();
 
-    var defaults = {
+    this.opt = {
       size: {
         x: 5,
         y: 5,
@@ -16,10 +17,6 @@ class SimpleCube {
 
     }
 
-    this.opt = defaults;
-
-    this.group = null;
-
     // ----メッシュの初期化
     this.createMesh();
 
@@ -28,51 +25,34 @@ class SimpleCube {
   createGeometry() {
 
     // ジオメトリの定義
-    this.geometry = new THREE.BoxGeometry(
+    var geometry = new THREE.BoxGeometry(
                       this.opt.size.x,
                       this.opt.size.y,
                       this.opt.size.z
                     );
 
+    return geometry;
   }
 
   createMaterial() {
 
     // マテリアルの定義
-    this.material = new THREE.MeshBasicMaterial({
+    var material = new THREE.MeshBasicMaterial({
                       color: this.opt.color
                     });
+
+    return material;
 
   }
 
   createMesh() {
-
-    this.createGeometry();
-    this.createMaterial();
-    this.mesh = new THREE.Mesh(this.geometry, this.material);
+    super.createMesh();
 
     this.mesh.position.set(
         this.opt.position.x,
         this.opt.position.y,
         this.opt.position.z
       );
-  
-  }
-
-  renew() {
-
-    if(this.group == null){
-      this.group = new THREE.Group();
-      threeMain.scene.add(this.group);
-    }
-    this.group.add(this.mesh);
-
-  }
-
-  remove() {
-
-    threeMain.scene.remove(this.group);
-    this.group = null;
   
   }
 

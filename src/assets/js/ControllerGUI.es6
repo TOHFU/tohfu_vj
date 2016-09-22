@@ -1,12 +1,58 @@
 class ControllerGUI {
   constructor() {
+    this.initKeyEvent();
+  }
 
-    // ----描画するオブジェクトを格納する配列
-    this.objects = [];
+  /**
+   * キーイベントのリスナー登録
+   */
+  initKeyEvent() {
+    window.addEventListener("keydown", this.onKeyDown);
+    window.addEventListener("keyup", this.onKeyUp);
+  }
 
-    // ----シーンの初期化
-    this.createScene();
+  /**
+   * キーダウン
+   * @param e イベント
+   */
+  onKeyDown(e) {
+    var keyCode = e.keyCode;
+    console.log('key down : ' + keyCode);
 
+    switch(keyCode) {
+      case 81:
+        // press Q
+        if (!this.simpleCube) {
+          this.simpleCube = new SimpleCube();
+          threeMain.add(simpleCube);
+        }
+        break;
+
+      default:
+        break;
+    }
+  }
+
+  /**
+   * キーアップ
+   * @param e イベント
+   */
+  onKeyUp(e) {
+    var keyCode = e.keyCode;
+    console.log('key up : ' + keyCode);
+
+    switch(keyCode) {
+      case 81:
+        // press Q
+        this.simpleCube.remove();
+        this.simpleCube = null;
+        break;
+
+      default:
+        break;
+    }
   }
   
 }
+
+let controllerGUI = new ControllerGUI();
